@@ -51,3 +51,44 @@ npm run dev
 
 👉 **[View the Detailed Sprint Plan](intern-plan/sprint-plan.md)**
 👉 **[View Sample Code Review](intern-plan/code-review-example.md)**
+
+🧠 Technical Strategy (Why I built it this way)
+1. Architecture: The Modular Monolith
+Decision: I chose a Modular Monolith over Microservices.
+
+Reasoning: At this stage (0-10k sensors), network latency and DevOps complexity are the enemies. A monolith allows us to share types, debug easily, and ship the MVP in days, not weeks.
+
+👉 See full details in docs/architecture_decisions.md
+
+2. Database: PostgreSQL (The "Boring" Choice)
+Decision: Single PostgreSQL instance using JSONB for sensor logs.
+
+Reasoning: We don't need the complexity of managing a separate Time-Series DB (InfluxDB) yet. Postgres handles JSONB efficiently enough for our current scale.
+
+3. Safety: TypeScript + Zod
+Decision: Strict Mode enabled; Runtime validation on all inputs.
+
+Reasoning: This acts as a safety net for junior engineers, preventing "undefined" errors from crashing production.
+
+👥 Intern Management & Onboarding
+As a Founding Engineer, my role includes mentoring. I have prepared a structured Week 1 Sprint to get interns shipping value immediately.
+
+Frontend Goal: Ship a "Hello World" Dashboard using Component Libraries (Day 1-5).
+
+ML Goal: Move from Mock Data -> Logistic Regression Model (Day 1-5).
+
+Code Review Philosophy: Focus on architectural patterns (e.g., Fixing N+1 Queries) rather than syntax nitpicking.
+
+👉 See the full schedule in intern-plan/sprint-plan.md
+
+🔮 Future Roadmap
+Phase 1 (Now): Solid Monolith, Single DB, REST API.
+
+Phase 2 (>10k Sensors): Introduce InfluxDB for time-series data; move Ingestion to Go/Rust.
+
+Phase 3 (>1M Sensors): Split into Microservices (Ingestion vs. Analytics vs. User Mgmt).
+
+Submitted by: Ayushi
+
+Founding Engineer Candidate
+
